@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  smart-mermaid:
+    image: ghcr.io/luler/smart-mermaid-docker:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - AI_API_URL=https://api.openai.com/v1
+      - AI_API_KEY=your_api_key_here
+      #- AI_MODEL_NAME=deepseek/deepseek-v3 #可选，服务端默认模型名
+      #- NEXT_PUBLIC_AI_MODEL_NAME=deepseek/deepseek-v3 #可选，前端默认选中模型
+      - AI_MODELS=deepseek/deepseek-v3,gpt-4o # 前端可选模型，逗号分隔
+      - NEXT_PUBLIC_MAX_CHARS=20000
+      - NEXT_PUBLIC_DAILY_USAGE_LIMIT=5
+      - ACCESS_PASSWORD=your_access_password  # 可选
+    restart: unless-stopped
