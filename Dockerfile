@@ -13,6 +13,11 @@ RUN npm install
 # 复制项目文件
 COPY . .
 
+#设置环境变量
+ENV NEXT_PUBLIC_AI_MODEL_NAME=gpt-4o
+ENV NEXT_PUBLIC_MAX_CHARS=20000
+ENV NEXT_PUBLIC_DAILY_USAGE_LIMIT=20
+
 # 构建生产版本
 RUN npm run build
 

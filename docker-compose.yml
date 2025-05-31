@@ -8,10 +8,7 @@ services:
     environment:
       - AI_API_URL=https://api.openai.com/v1
       - AI_API_KEY=your_api_key_here
-      #- AI_MODEL_NAME=deepseek/deepseek-v3 #可选，服务端默认模型名
-      #- NEXT_PUBLIC_AI_MODEL_NAME=deepseek/deepseek-v3 #可选，前端默认选中模型
-      - AI_MODELS=deepseek/deepseek-v3,gpt-4o # 前端可选模型，逗号分隔
-      - NEXT_PUBLIC_MAX_CHARS=20000
-      - NEXT_PUBLIC_DAILY_USAGE_LIMIT=5
+      #- AI_MODEL_NAME=deepseek/deepseek-v3 #可选，服务端默认模型名，如果设置未授权用户默认选中此模型
+      - AI_MODELS=deepseek/deepseek-v3,gpt-4o # 前端授权用户可选模型，逗号分隔，未授权默认选中第一个模型
       - ACCESS_PASSWORD=your_access_password  # 可选
     restart: unless-stopped
