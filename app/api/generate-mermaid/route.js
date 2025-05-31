@@ -2,8 +2,12 @@ import { cleanText } from "@/lib/utils";
 
 export async function POST(request) {
   try {
-    const { text, diagramType, aiConfig, accessPassword, selectedModel } = await request.json();
+    let { text, diagramType, aiConfig, accessPassword, selectedModel } = await request.json()
 
+    let modelNames = [process.env.AI_MODEL_NAME, ...((process.env.AI_MODELS || '').split(','))].filter(Boolean)
+    if (!modelNames.includes(selectedModel)) {
+      selectedModel = modelNames[0] // 如果选择的模型不在配置中，使用第一个模型
+    }
     if (!text) {
       return Response.json({ error: "请提供文本内容" }, { status: 400 });
     }
